@@ -1,6 +1,7 @@
-rules_input = ['E -> E + T','E -> T', 'T -> T * F', 'T -> F', 'F -> (E)', 'F -> a', 'F -> b']
-expression_data = 'a + a * b' # Accepted
-# expression_data = 'c + a * b' # Rejected
+rules_input = ['S -> $','S -> A', 'A -> a b B', 'A -> a b C', 'B -> $', 'B -> d']
+# expression_data = 'a b c' # Rejected
+# expression_data = 'a b $' # Accepted
+expression_data = 'a a b' # Rejected
 
 #Expression is saved to exp in reverse order, removing whitespace.
 i = 0
@@ -31,7 +32,7 @@ def divide_rules():  # split productions into the rules class by variable
     return results
 
 def print_reject():  #Prints Reject and exits program.
-    print("\n\n")
+    print("\n")
     print("*** REJECTED ***")
     exit()
 
@@ -61,7 +62,7 @@ def operation(stack, exp):  #Performs the operations of a PDA.  Recursive.
 
 def test(stack, exp):
     if len(stack) == 0 and len(exp) == 0:
-        print("\n\n")
+        print("\n")
         print("*** ACCEPTED ***")
         exit()
     else:
